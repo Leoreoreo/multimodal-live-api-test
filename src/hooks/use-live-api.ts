@@ -34,6 +34,7 @@ export type UseLiveAPIResults = {
   volume: number;
 };
 
+
 export function useLiveAPI({
   url,
   apiKey,
@@ -45,8 +46,22 @@ export function useLiveAPI({
   const audioStreamerRef = useRef<AudioStreamer | null>(null);
 
   const [connected, setConnected] = useState(false);
+
+
   const [config, setConfig] = useState<LiveConfig>({
     model: "models/gemini-2.0-flash-exp",
+    generationConfig: {
+      responseModalities: "text",
+      responseMimeType: "application/json",
+			// responseSchema: procedureCheckingFunctionDeclaration,
+      // speechConfig: {
+      //   voiceConfig: {
+      //     prebuiltVoiceConfig: {
+      //       voiceName: "Fenrir",
+      //     },
+      //   },
+      // },
+    },
   });
   const [volume, setVolume] = useState(0);
 
